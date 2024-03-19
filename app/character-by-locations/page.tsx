@@ -1,6 +1,7 @@
 'use client'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {getCharactersFromLocation} from "@/utils/firebase";
 import CharacterList from "../../components/CharacterList";
 import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
@@ -18,21 +19,21 @@ const CharacterByLocationsPage = () => {
     // }
 
     // Fungsi untuk mendapatkan karakter dari lokasi yang dipilih
-    // const fetchCharactersByLocation = async () => {
-    //     // @ts-ignore
-    //     if (selectLocation !== '' || selectLocation !== 'Select locations') {
-    //         const characters = await getCharactersFromLocation(selectLocation);
-    //         setData(characters);
-    //     }
-    // }
+    const fetchCharactersByLocation = async () => {
+        // @ts-ignore
+        if (selectLocation !== '' || selectLocation !== 'Select locations') {
+            const characters = await getCharactersFromLocation(selectLocation);
+            setData(characters);
+        }
+    }
 
     // useEffect(() => {
     //     fetchLocations();
     // }, []);
 
-    // useEffect(() => {
-    //     fetchCharactersByLocation();
-    // }, [selectLocation]);
+    useEffect(() => {
+        fetchCharactersByLocation();
+    }, [selectLocation]);
 
     return (
         <div className="space-y-10">

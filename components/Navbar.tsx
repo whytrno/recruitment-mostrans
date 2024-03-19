@@ -9,7 +9,7 @@ import {addCharacterToLocation, getAllLocations, getCharacterLocation} from "@/u
 const Navbar = (data: DetailCharacterInterface) => {
     const [assignModal, setAssignModal] = useState(false)
     const [locationInput, setLocationInput] = useState('')
-    const [locations, setLocations] = useState([])
+    const [locations, setLocations] = useState<string[]>([])
     const [errorMessage, setErrorMessage] = useState('')
     const [characterLocation, setCharacterLocation] = useState('')
 
@@ -66,10 +66,13 @@ const Navbar = (data: DetailCharacterInterface) => {
                         assignModal && (
                             <div className="absolute top-14 right-0 w-96 border shadow-xl rounded-xl p-3 z-50 space-y-5">
                                 <div className="space-y-2">
-                                    <input onInput={(e) => setLocationInput(e.target.value)} value={locationInput}
-                                           type="text"
-                                           className="w-full rounded-xl py-2 px-4 border"
-                                           placeholder="Masukkan lokasi"/>
+                                    <input
+                                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => setLocationInput(e.target.value)}
+                                        value={locationInput}
+                                        type="text"
+                                        className="w-full rounded-xl py-2 px-4 border"
+                                        placeholder="Masukkan lokasi"
+                                    />
                                     <button onClick={() => handleAssignLocation()}
                                             className="w-full bg-blue-400 rounded-xl py-2 px-4 text-white">Simpan
                                     </button>

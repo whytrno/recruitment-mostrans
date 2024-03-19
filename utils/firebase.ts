@@ -24,19 +24,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-// const addCharacterToLocation = async (location: string, character: DetailCharacterInterface) => {
-//     try {
-//         const data = {
-//             location: location,
-//             character: character.character
-//         }
-//
-//         await addDoc(collection(db, `locations`), data);
-//         console.log('Character added to location successfully.');
-//     } catch (error) {
-//         console.error('Error adding character to location:', error);
-//     }
-// };
 const addCharacterToLocation = async (location: string, character: DetailCharacterInterface) => {
     try {
         const q = query(collection(db, 'locations'), where('character.id', '==', character.character.id));
@@ -76,13 +63,15 @@ const getCharacterLocation = async (character: DetailCharacterInterface) => {
 
 const getAllLocations = async () => {
     try {
-        const locationsSet = new Set();
+        const locationsArray: string[] = [];
         const querySnapshot = await getDocs(collection(db, 'locations'));
         querySnapshot.forEach((doc) => {
             const locationData = doc.data().location;
-            locationsSet.add(locationData);
+            if (locationData && !locationsArray.includes(locationData)) {
+                locationsArray.push(locationData);
+            }
         });
-        return Array.from(locationsSet);
+        return locationsArray;
     } catch (error) {
         console.error('Error getting locations:', error);
         return [];
@@ -92,7 +81,7 @@ const getAllLocations = async () => {
 
 const getCharactersFromLocation = async (location: string) => {
     try {
-        const characters = [];
+        const characters: any[] = [];
         const q = query(collection(db, 'locations'), where('location', '==', location));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {

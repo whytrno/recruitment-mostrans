@@ -7,14 +7,15 @@ import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
 
 const CharacterByLocationsPage = () => {
-    const [locations, setLocations] = useState([]);
-    const [selectLocation, setSelectLocation] = useState('');
-    const [data, setData] = useState([]);
+    const [locations, setLocations] = useState<string[]>([]);
+    const [selectLocation, setSelectLocation] = useState<string>('');
+    const [data, setData] = useState<any[]>([]);
 
     // Fungsi untuk mengambil lokasi dari Firebase
     const fetchLocations = async () => {
-        const locations = await getAllLocations();
-        setLocations(locations);
+        await getAllLocations().then(
+            (locationsFetch) => setLocations(locationsFetch)
+        );
     }
 
     // Fungsi untuk mendapatkan karakter dari lokasi yang dipilih
@@ -45,7 +46,7 @@ const CharacterByLocationsPage = () => {
                 <Icon icon="mdi:chevron-left" className="text-2xl"/>
                 <p>Home</p>
             </Link>
-            
+
             <select onChange={(e) => setSelectLocation(e.target.value)}
                     className="w-full py-2 text-center rounded-xl shadow-xl border px-4">
                 <option>Select locations</option>

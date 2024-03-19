@@ -22,6 +22,7 @@ const CharacterByLocationsPage = () => {
     const fetchCharactersByLocation = async () => {
         if (typeof window !== 'undefined') {
             // Kode ini hanya akan dijalankan di lingkungan browser
+            // @ts-ignore
             if (selectLocation !== '' || selectLocation !== 'Select locations') {
                 const characters = await getCharactersFromLocation(selectLocation);
                 setData(characters);

@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 import {getAllLocations, getCharactersFromLocation} from "@/utils/firebase";
-import CharacterList from "@/components/CharacterList";
+import CharacterList from "../../components/CharacterList";
 import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
 

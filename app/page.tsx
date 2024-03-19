@@ -1,8 +1,8 @@
 'use client'
 
-import CharacterList from "@/components/CharacterList"
+import CharacterList from "../components/CharacterList"
 import {useSuspenseQuery} from "@apollo/experimental-nextjs-app-support/ssr";
-import {GET_CHARACTERS} from "@/utils/graphqlQueries";
+import {GET_CHARACTERS} from "../utils/graphqlQueries";
 import {CharactersInterface} from "@/utils/interfaces";
 import Link from "next/link";
 

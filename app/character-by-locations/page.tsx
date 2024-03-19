@@ -20,10 +20,12 @@ const CharacterByLocationsPage = () => {
 
     // Fungsi untuk mendapatkan karakter dari lokasi yang dipilih
     const fetchCharactersByLocation = async () => {
-        // @ts-ignore
-        if (selectLocation !== '' || selectLocation !== 'Select locations') {
-            const characters = await getCharactersFromLocation(selectLocation);
-            setData(characters);
+        if (typeof window !== 'undefined') {
+            // Kode ini hanya akan dijalankan di lingkungan browser
+            if (selectLocation !== '' || selectLocation !== 'Select locations') {
+                const characters = await getCharactersFromLocation(selectLocation);
+                setData(characters);
+            }
         }
     }
 
@@ -37,7 +39,6 @@ const CharacterByLocationsPage = () => {
 
     useEffect(() => {
         console.log(data)
-
     }, [data])
 
     return (
@@ -73,5 +74,6 @@ const CharacterByLocationsPage = () => {
         </div>
     )
 }
+
 
 export default CharacterByLocationsPage;

@@ -1,9 +1,12 @@
 "use client";
 
-import {ApolloNextAppProvider,} from "@apollo/experimental-nextjs-app-support/ssr";
-import {NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink} from 'apollo-boost';
-import {ApolloLink} from 'apollo-link';
-import {HttpLink} from 'apollo-link-http';
+import {
+    ApolloNextAppProvider,
+    NextSSRApolloClient,
+    NextSSRInMemoryCache,
+    SSRMultipartLink,
+} from "@apollo/experimental-nextjs-app-support/ssr";
+import {ApolloLink, HttpLink} from "@apollo/client";
 
 function makeClient() {
     const httpLink = new HttpLink({

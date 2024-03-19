@@ -6,7 +6,7 @@ import {GET_DETAIL_CHARACTER} from "@/utils/graphqlQueries";
 import {useSuspenseQuery} from "@apollo/experimental-nextjs-app-support/ssr";
 import Navbar from "@/components/Navbar";
 
-const DetailPage = ({params}: { params: { id: number } }) => {
+const DetailPage = ({params = {id: 1}}: { params: { id: number } }) => {
     const {error, data} = useSuspenseQuery<DetailCharacterInterface>(GET_DETAIL_CHARACTER, {
         variables: {
             id: params.id

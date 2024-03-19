@@ -2,7 +2,6 @@
 
 import {useEffect, useState} from "react";
 import {getCharactersFromLocation} from "@/utils/firebase";
-import CharacterList from "../../components/CharacterList";
 import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
 
@@ -54,17 +53,17 @@ const CharacterByLocationsPage = () => {
             {/*    }*/}
             {/*</select>*/}
 
-            {
-                data.length > 0 && (
-                    <div className='space-y-10'>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-14">
-                            {
-                                data.map((item, index) => <CharacterList {...item.character} key={index}/>)
-                            }
-                        </div>
-                    </div>
-                )
-            }
+            {/*{*/}
+            {/*    data.length > 0 && (*/}
+            {/*        <div className='space-y-10'>*/}
+            {/*            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-14">*/}
+            {/*                {*/}
+            {/*                    data.map((item, index) => <CharacterList {...item.character} key={index}/>)*/}
+            {/*                }*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )*/}
+            {/*}*/}
         </div>
     )
 }

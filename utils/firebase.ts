@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
 import {getAnalytics} from "firebase/analytics";
-import {addDoc, collection, deleteDoc, doc, getDocs, getFirestore, query, where} from 'firebase/firestore';
+import {addDoc, collection, deleteDoc, doc, Firestore, getDocs, getFirestore, query, where} from 'firebase/firestore';
 import {DetailCharacterInterface} from "@/utils/interfaces";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,10 +19,19 @@ const firebaseConfig = {
     measurementId: "G-XBQTKJV91K"
 };
 
+let app, db: Firestore;
+
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
+if (typeof window !== "undefined") {
+    const {initializeApp} = require("firebase/app");
+    const {getAnalytics} = require("firebase/analytics");
+    const {getFirestore} = require("firebase/firestore");
+
+    // Initialize Firebase
+    app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    db = getFirestore(app);
+}
 
 const addCharacterToLocation = async (location: string, character: DetailCharacterInterface) => {
     try {

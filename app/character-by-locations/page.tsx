@@ -12,18 +12,25 @@ const CharacterByLocationsPage = () => {
     const [data, setData] = useState<any[]>([]);
 
     const fetchLocations = async () => {
-        await getAllLocations().then(
-            (locationsFetch) => setLocations(locationsFetch)
-        );
-    }
+        try {
+            const locationsFetch = await getAllLocations();
+            setLocations(locationsFetch);
+        } catch (error) {
+            console.error("Error fetching locations:", error);
+        }
+    };
 
     const fetchCharactersByLocation = async () => {
-        // @ts-ignore
-        if (selectLocation !== '' || selectLocation !== 'Select locations') {
-            const characters = await getCharactersFromLocation(selectLocation);
-            setData(characters);
+        try {
+            // @ts-ignore
+            if (selectLocation !== '' || selectLocation !== 'Select locations') {
+                const characters = await getCharactersFromLocation(selectLocation);
+                setData(characters);
+            }
+        } catch (error) {
+            console.error("Error fetching characters:", error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchLocations();

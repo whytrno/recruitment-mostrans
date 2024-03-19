@@ -1,37 +1,38 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import CharacterList from "../../components/CharacterList";
 import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
-import {getAllLocations, getCharactersFromLocation} from "@/utils/firebase";
 
 const CharacterByLocationsPage = () => {
     const [locations, setLocations] = useState<string[]>([]);
     const [selectLocation, setSelectLocation] = useState<string>('');
     const [data, setData] = useState<any[]>([]);
 
-    const fetchLocations = async () => {
-        await getAllLocations().then(
-            (locationsFetch) => setLocations(locationsFetch)
-        );
-    }
+    // Fungsi untuk mengambil lokasi dari Firebase
+    // const fetchLocations = async () => {
+    //     await getAllLocations().then(
+    //         (locationsFetch) => setLocations(locationsFetch)
+    //     );
+    // }
 
-    const fetchCharactersByLocation = async () => {
-        // @ts-ignore
-        if (selectLocation !== '' || selectLocation !== 'Select locations') {
-            const characters = await getCharactersFromLocation(selectLocation);
-            setData(characters);
-        }
-    }
+    // Fungsi untuk mendapatkan karakter dari lokasi yang dipilih
+    // const fetchCharactersByLocation = async () => {
+    //     // @ts-ignore
+    //     if (selectLocation !== '' || selectLocation !== 'Select locations') {
+    //         const characters = await getCharactersFromLocation(selectLocation);
+    //         setData(characters);
+    //     }
+    // }
 
-    useEffect(() => {
-        fetchLocations();
-    }, []);
+    // useEffect(() => {
+    //     fetchLocations();
+    // }, []);
 
-    useEffect(() => {
-        fetchCharactersByLocation();
-    }, [selectLocation]);
+    // useEffect(() => {
+    //     fetchCharactersByLocation();
+    // }, [selectLocation]);
 
     return (
         <div className="space-y-10">

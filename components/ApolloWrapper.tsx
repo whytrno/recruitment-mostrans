@@ -1,12 +1,9 @@
 "use client";
 
-import {ApolloLink, HttpLink} from "@apollo/client";
-import {
-    ApolloNextAppProvider,
-    NextSSRInMemoryCache,
-    NextSSRApolloClient,
-    SSRMultipartLink,
-} from "@apollo/experimental-nextjs-app-support/ssr";
+import {ApolloNextAppProvider,} from "@apollo/experimental-nextjs-app-support/ssr";
+import {NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink} from 'apollo-boost';
+import {ApolloLink} from 'apollo-link';
+import {HttpLink} from 'apollo-link-http';
 
 function makeClient() {
     const httpLink = new HttpLink({
@@ -24,9 +21,15 @@ function makeClient() {
                     }),
                     httpLink,
                 ])
-                : httpLink,
+                : ApolloLink.from([
+                    new HttpLink({
+                        uri: "https://rickandmortyapi.com/graphql",
+                        credentials: 'same-origin', // Adjust credentials according to your needs
+                    }),
+                ]),
     });
 }
+
 
 // you need to create a component to wrap your app in
 export function ApolloWrapper({children}: React.PropsWithChildren) {

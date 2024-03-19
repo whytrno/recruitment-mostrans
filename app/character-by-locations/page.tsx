@@ -1,7 +1,6 @@
 'use client'
 
-import {useEffect, useState} from "react";
-import {getAllLocations} from "@/utils/firebase";
+import {useState} from "react";
 import CharacterList from "../../components/CharacterList";
 import {Icon} from "@iconify-icon/react";
 import Link from "next/link";
@@ -12,11 +11,11 @@ const CharacterByLocationsPage = () => {
     const [data, setData] = useState<any[]>([]);
 
     // Fungsi untuk mengambil lokasi dari Firebase
-    const fetchLocations = async () => {
-        await getAllLocations().then(
-            (locationsFetch) => setLocations(locationsFetch)
-        );
-    }
+    // const fetchLocations = async () => {
+    //     await getAllLocations().then(
+    //         (locationsFetch) => setLocations(locationsFetch)
+    //     );
+    // }
 
     // Fungsi untuk mendapatkan karakter dari lokasi yang dipilih
     // const fetchCharactersByLocation = async () => {
@@ -27,9 +26,9 @@ const CharacterByLocationsPage = () => {
     //     }
     // }
 
-    useEffect(() => {
-        fetchLocations();
-    }, []);
+    // useEffect(() => {
+    //     fetchLocations();
+    // }, []);
 
     // useEffect(() => {
     //     fetchCharactersByLocation();
